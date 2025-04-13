@@ -76,7 +76,7 @@ export const projectsData: Project[] = [
       "KlosIt qualifies leads, handles conversations, and brings you only the hottest prospects ready to close. Focus on creating, not chasing leads. [currently in development]",
     link: "https://www.klosit.pro/",
     socials: ["https://twitter.com/project2"],
-    imgLink: "/images/clicker.png",
+    imgLink: "/images/klosit.png",
     tags: ["Web3", "Token Development", "Business Planning"],
   },
 ];
