@@ -74,8 +74,7 @@ export function Hero() {
 
         <motion.div className="space-y-2 mb-8 max-w-md" variants={itemVariants}>
           <p className="text-xl md:text-2xl text-white/80">
-            Computer Engineer | Web3/Web2 Developer/Consultant | Product
-            Developer
+            Engineering | Web3/Web2 Developer/Consultant | Product Developer
           </p>
         </motion.div>
 

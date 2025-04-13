@@ -26,7 +26,7 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "Decode Next | Web3/Web2 Developer & Consultant",
   description:
-    "Computer Engineer, Fullstack Developer, Web3 developer, and Consultant",
+    "Engineering, Fullstack Developer, Web3 developer, and Consultant",
   keywords: [
     "developer",
     "web3",
