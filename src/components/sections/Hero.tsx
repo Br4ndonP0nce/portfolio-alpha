@@ -69,7 +69,7 @@ export function Hero() {
           className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 font-heading"
           variants={itemVariants}
         >
-          <span className="text-brand-orange">De</span>CODE NEXT
+          <span className="text-brand-orange">DE</span>CODE NEXT
         </motion.h1>
 
         <motion.div className="space-y-2 mb-8 max-w-md" variants={itemVariants}>

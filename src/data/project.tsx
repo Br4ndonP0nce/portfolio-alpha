@@ -12,7 +12,7 @@ export const projectsData: Project[] = [
   {
     projectName: "The Gratitude Bear",
     description:
-      "Empowering young minds withe the power of gratitude, first of its kind web2/web3 phygital, education product [Currently in development and collaboration with BOCG (dubai)]",
+      "Empowering young minds withe the power of gratitude, first of its kind web2/web3 phygital, education product [Former CTO, Currently in development and collaboration with BOCG (dubai)]",
     link: "https://www.instagram.com/thegratitudebearofficial/",
     socials: ["https://www.instagram.com/thegratitudebearofficial/"],
     imgLink: "https://i.imgur.com/FEXhRa1.png",
@@ -21,7 +21,7 @@ export const projectsData: Project[] = [
   {
     projectName: "Natural Ancestors",
     description:
-      "𝗔 𝗗𝗲𝘀𝗲𝗿𝘁 𝗢𝗮𝘀𝗶𝘀 𝗶𝗻 𝘁𝗵𝗲 𝗖𝗼𝗮𝗰𝗵𝗲𝗹𝗹𝗮 𝗩𝗮𝗹𝗹𝗲𝘆 🌵 collaborative project with cuahuilla tribe based in palm springs california  ",
+      "𝗔 𝗗𝗲𝘀𝗲𝗿𝘁 𝗢𝗮𝘀𝗶𝘀 𝗶𝗻 𝘁𝗵𝗲 𝗖𝗼𝗮𝗰𝗵𝗲𝗹𝗹𝗮 𝗩𝗮𝗹𝗹𝗲𝘆 🌵 collaborative project with cuahuilla tribe based in palm springs california [Former CTO] ",
     link: "https://www.instagram.com/naturalancestors/",
     socials: ["https://www.instagram.com/naturalancestors/"],
     imgLink: "https://i.imgur.com/OdwqIKE.png",

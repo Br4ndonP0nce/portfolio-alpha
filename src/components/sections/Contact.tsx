@@ -4,11 +4,8 @@
 import React, { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Github, Linkedin, Twitter, Send, CheckCircle } from "lucide-react";
-
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { cn } from "@/lib/utils";
+import { FaWhatsapp } from "react-icons/fa6";
+// No need to install additional dependencies for this solution
 
 export function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -22,6 +19,7 @@ export function Contact() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -33,76 +31,61 @@ export function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
 
-    // This would be where you'd handle the actual form submission
-    // For demo purposes, we'll just simulate a delay
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      // Replace 'YOUR_FORMSPREE_ENDPOINT' with your actual Formspree endpoint
+      const response = await fetch("https://formspree.io/f/xzzeojyd", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formState),
+      });
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    setFormState({ name: "", email: "", message: "" });
+      if (!response.ok) {
+        throw new Error("Form submission failed");
+      }
 
-    // Reset the submitted state after 5 seconds
-    setTimeout(() => setIsSubmitted(false), 5000);
-  };
+      setIsSubmitted(true);
+      setFormState({ name: "", email: "", message: "" });
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 50,
-      },
-    },
+      // Reset the submitted state after 5 seconds
+      setTimeout(() => setIsSubmitted(false), 5000);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Unknown error occurred");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <section id="contact" ref={sectionRef} className="py-20 px-4 md:px-0">
       <div className="container mx-auto">
-        <motion.div
-          className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10"
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-        >
+        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
           {/* Left side - Chat bubbles */}
-          <motion.div variants={itemVariants} className="space-y-8">
-            <motion.div
-              className="bg-muted/60 rounded-tl-2xl rounded-tr-2xl rounded-br-2xl p-6 w-4/5"
-              variants={itemVariants}
-            >
-              <h3 className="text-2xl font-bold mb-2">Let's work together!</h3>
-              <p className="text-white/70">
+          <div className="space-y-8">
+            <div className="bg-muted/60 rounded-tl-2xl rounded-tr-2xl rounded-br-2xl p-6 w-4/5">
+              <h3 className="text-2xl font-bold mb-2 font-urbanist">
+                Let's work together!
+              </h3>
+              <p className="text-white/70 font-inter">
                 I'm always open to discussing new projects, creative ideas, or
                 opportunities to be part of your vision.
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div
-              className="bg-primary/10 rounded-tl-2xl rounded-tr-2xl rounded-bl-2xl p-6 w-4/5 ml-auto"
-              variants={itemVariants}
-            >
-              <h3 className="text-2xl font-bold mb-2">Sure, let's chat!</h3>
-              <p className="text-white/70 mb-4">
+            <div className="bg-primary/10 rounded-tl-2xl rounded-tr-2xl rounded-bl-2xl p-6 w-4/5 ml-auto">
+              <h3 className="text-2xl font-bold mb-2 font-urbanist">
+                Sure, let's chat!
+              </h3>
+              <p className="text-white/70 mb-4 font-inter">
                 Fill out the form or reach me directly through one of these
                 platforms.
               </p>
               <div className="flex gap-4">
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/poncearagonbrandon?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white hover:text-primary transition-colors duration-300"
@@ -110,7 +93,7 @@ export function Contact() {
                   <Linkedin className="h-6 w-6" />
                 </a>
                 <a
-                  href="https://twitter.com"
+                  href="https://x.com/brandon_ponce1"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white hover:text-primary transition-colors duration-300"
@@ -118,35 +101,42 @@ export function Contact() {
                   <Twitter className="h-6 w-6" />
                 </a>
                 <a
-                  href="https://github.com"
+                  href="http://wa.me/525522838461"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white hover:text-primary transition-colors duration-300"
                 >
-                  <Github className="h-6 w-6" />
+                  <FaWhatsapp className="h-6 w-6" />
                 </a>
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           {/* Right side - Contact form */}
-          <motion.div variants={itemVariants}>
-            <motion.form
+          <div>
+            <form
               onSubmit={handleSubmit}
               className="space-y-6 bg-black/20 p-6 rounded-lg border border-white/10"
-              variants={itemVariants}
             >
-              <h3 className="text-2xl font-semibold mb-4">Get in Touch</h3>
+              <h3 className="text-2xl font-semibold mb-4 font-urbanist">
+                Get in Touch
+              </h3>
+
+              {error && (
+                <div className="bg-destructive/20 text-destructive-foreground p-3 rounded-md text-sm">
+                  {error}
+                </div>
+              )}
 
               <div className="space-y-4">
                 <div>
                   <label
                     htmlFor="name"
-                    className="text-sm font-medium block mb-1"
+                    className="text-sm font-medium block mb-1 font-inter"
                   >
                     Name
                   </label>
-                  <Input
+                  <input
                     id="name"
                     name="name"
                     placeholder="Your name"
@@ -154,18 +144,18 @@ export function Contact() {
                     onChange={handleChange}
                     disabled={isSubmitting || isSubmitted}
                     required
-                    className="bg-black/40 border-white/10"
+                    className="input bg-black/40 border-white/10 w-full"
                   />
                 </div>
 
                 <div>
                   <label
                     htmlFor="email"
-                    className="text-sm font-medium block mb-1"
+                    className="text-sm font-medium block mb-1 font-inter"
                   >
                     Email
                   </label>
-                  <Input
+                  <input
                     id="email"
                     name="email"
                     type="email"
@@ -174,18 +164,18 @@ export function Contact() {
                     onChange={handleChange}
                     disabled={isSubmitting || isSubmitted}
                     required
-                    className="bg-black/40 border-white/10"
+                    className="input bg-black/40 border-white/10 w-full"
                   />
                 </div>
 
                 <div>
                   <label
                     htmlFor="message"
-                    className="text-sm font-medium block mb-1"
+                    className="text-sm font-medium block mb-1 font-inter"
                   >
                     Message
                   </label>
-                  <Textarea
+                  <textarea
                     id="message"
                     name="message"
                     placeholder="Your message..."
@@ -193,21 +183,20 @@ export function Contact() {
                     onChange={handleChange}
                     disabled={isSubmitting || isSubmitted}
                     required
-                    className="min-h-[120px] bg-black/40 border-white/10"
+                    className="textarea min-h-[120px] bg-black/40 border-white/10 w-full"
                   />
                 </div>
               </div>
 
-              <Button
+              <button
                 type="submit"
-                className={cn(
-                  "w-full",
-                  isSubmitted && "bg-green-600 hover:bg-green-700"
-                )}
+                className={`btn btn-default w-full ${
+                  isSubmitted ? "bg-green-600 hover:bg-green-700" : ""
+                }`}
                 disabled={isSubmitting || isSubmitted}
               >
                 {isSubmitting ? (
-                  <span className="flex items-center">
+                  <span className="flex items-center justify-center">
                     <svg
                       className="animate-spin -ml-1 mr-2 h-4 w-4"
                       xmlns="http://www.w3.org/2000/svg"
@@ -231,20 +220,20 @@ export function Contact() {
                     Sending...
                   </span>
                 ) : isSubmitted ? (
-                  <span className="flex items-center">
+                  <span className="flex items-center justify-center">
                     <CheckCircle className="mr-2 h-4 w-4" />
                     Message Sent!
                   </span>
                 ) : (
-                  <span className="flex items-center">
+                  <span className="flex items-center justify-center">
                     <Send className="mr-2 h-4 w-4" />
                     Send Message
                   </span>
                 )}
-              </Button>
-            </motion.form>
-          </motion.div>
-        </motion.div>
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
     </section>
   );

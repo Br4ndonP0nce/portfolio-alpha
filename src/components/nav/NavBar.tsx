@@ -49,7 +49,7 @@ export function Navbar() {
             transition={{ duration: 0.2 }}
           >
             <span className="font-bold text-xl">
-              <span className="text-brand-orange">De</span>CODE NEXT
+              <span className="text-brand-orange">DE</span>CODE NEXT
             </span>
           </motion.div>
         </Link>

@@ -28,21 +28,7 @@ export function Footer() {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
-        >
-          {socialLinks.map((link, index) => (
-            <motion.a
-              key={index}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white transition-colors duration-300 ease-in-out hover:text-black"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {link.icon}
-            </motion.a>
-          ))}
-        </motion.div>
+        ></motion.div>
 
         <motion.div
           initial={{ y: 20, opacity: 0 }}
