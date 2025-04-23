@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Urbanist, Space_Grotesk } from "next/font/google";
 import { Navbar } from "@/components/nav/NavBar";
 import { Footer } from "@/components/sections/Footer";
+import { defaultMetadata } from "@/lib/seo";
 import "./globals.css";
 const inter = Inter({
   subsets: ["latin"],
@@ -23,21 +24,7 @@ const spaceGrotesk = Space_Grotesk({
   variable: "--font-mono",
   display: "swap",
 });
-export const metadata: Metadata = {
-  title: "Decode Next | Web3/Web2 Developer & Consultant",
-  description:
-    "Engineering, Fullstack Developer, Web3 developer, and Consultant",
-  keywords: [
-    "developer",
-    "web3",
-    "web2",
-    "consultant",
-    "fullstack",
-    "next.js",
-    "blockchain",
-  ],
-};
-
+export const metadata = defaultMetadata;
 export default function RootLayout({
   children,
 }: Readonly<{
