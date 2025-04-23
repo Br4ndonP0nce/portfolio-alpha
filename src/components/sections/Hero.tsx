@@ -69,7 +69,7 @@ export function Hero() {
       </motion.div>
 
       {/* Hero content */}
-      <div className="container relative z-10 mx-auto flex min-h-screen items-center pt-20">
+      <div className="container relative z-10 mx-auto flex min-h-screen items-center pt-20 px-5">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
           {/* Left content - Text */}
           <motion.div
