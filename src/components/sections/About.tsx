@@ -214,19 +214,6 @@ export function About() {
                 </motion.div>
 
                 <motion.div
-                  className="pt-3 border-t border-white/10"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={
-                    isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }
-                  }
-                  transition={{ delay: 1.2 }}
-                >
-                  <div className="text-brand-blue font-semibold">
-                    🚀 TRANSFORMATION SUCCESS: Revenue increased by 500%
-                  </div>
-                </motion.div>
-
-                <motion.div
                   className="flex items-center gap-2 pt-2"
                   initial={{ opacity: 0, y: 10 }}
                   animate={
