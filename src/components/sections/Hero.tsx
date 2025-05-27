@@ -68,55 +68,8 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-br from-black via-black/95 to-black/90" />
 
         {/* Animated Orbs */}
-        <motion.div
-          style={{ y, opacity }}
-          className="absolute -bottom-40 -right-40 h-[600px] w-[600px] rounded-full blur-[150px]"
-          animate={{
-            background: [
-              "radial-gradient(circle, rgba(85,66,255,0.2) 0%, transparent 70%)",
-              "radial-gradient(circle, rgba(255,107,0,0.2) 0%, transparent 70%)",
-              "radial-gradient(circle, rgba(255,213,0,0.2) 0%, transparent 70%)",
-              "radial-gradient(circle, rgba(85,66,255,0.2) 0%, transparent 70%)",
-            ],
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
-
-        <motion.div
-          style={{ y, opacity }}
-          className="absolute -top-40 -left-40 h-[600px] w-[600px] rounded-full blur-[150px]"
-          animate={{
-            background: [
-              "radial-gradient(circle, rgba(255,107,0,0.15) 0%, transparent 70%)",
-              "radial-gradient(circle, rgba(255,213,0,0.15) 0%, transparent 70%)",
-              "radial-gradient(circle, rgba(85,66,255,0.15) 0%, transparent 70%)",
-              "radial-gradient(circle, rgba(255,107,0,0.15) 0%, transparent 70%)",
-            ],
-          }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        />
 
         {/* Floating Elements */}
-        {[...Array(8)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-white/20 rounded-full"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [-20, 20, -20],
-              opacity: [0.2, 0.8, 0.2],
-              scale: [0.8, 1.2, 0.8],
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-            }}
-          />
-        ))}
       </div>
 
       {/* Main Hero Content */}

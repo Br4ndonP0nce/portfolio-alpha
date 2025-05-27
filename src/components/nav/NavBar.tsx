@@ -45,7 +45,7 @@ export function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <motion.div
-            whileHover={{ rotate: 10 }}
+            whileHover={{ zoom: 1.05 }}
             transition={{ duration: 0.2 }}
           >
             <span className="font-bold text-xl">
