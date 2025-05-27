@@ -1,4 +1,3 @@
-// src/app/layout.tsx
 "use client";
 
 import type { Metadata } from "next";
@@ -62,15 +61,15 @@ export default function RootLayout({
         className={`${urbanist.variable} ${spaceGrotesk.variable} ${inter.variable} antialiased min-h-screen bg-grid`}
       >
         {/* Global Preloader */}
-        {isLoading && (
+        {/*isLoading && (
           <Preloader
             onComplete={handlePreloadComplete}
             duration={3000} // 3 seconds loading time
           />
-        )}
+        )*/}
 
         {/* Main Content - Hidden until preloader completes */}
-        <div
+        {/*<div
           className={`transition-opacity duration-500 ${
             showContent ? "opacity-100" : "opacity-0"
           }`}
@@ -78,11 +77,11 @@ export default function RootLayout({
             visibility: showContent ? "visible" : "hidden",
             position: showContent ? "relative" : "absolute",
           }}
-        >
-          <Navbar />
-          {children}
-          <Footer />
-        </div>
+        >*/}
+        <Navbar />
+        {children}
+        <Footer />
+        {/*</div>*/}
       </body>
     </html>
   );

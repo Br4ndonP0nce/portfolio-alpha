@@ -288,7 +288,7 @@ export function Hero() {
 
       {/* Scroll Indicator */}
       <motion.div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
+        className=" py-10 z-10 !text-2xl"
         animate={{
           y: [0, 10, 0],
           opacity: [0.4, 1, 0.4],
@@ -300,7 +300,7 @@ export function Hero() {
         }}
       >
         <div className="flex flex-col items-center gap-2">
-          <span className="text-white/60 text-xs font-medium tracking-wider font-inter">
+          <span className="text-white/60 font-medium tracking-wider font-inter">
             SCROLL TO DISCOVER
           </span>
           <ChevronDown className="h-6 w-6 text-white/60" />
