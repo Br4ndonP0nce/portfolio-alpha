@@ -1,8 +1,7 @@
-// src/components/sections/hero.tsx
+// src/components/sections/Hero.tsx
 "use client";
 
-import React, { useEffect, useRef } from "react";
-import Image from "next/image";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import {
   motion,
@@ -13,11 +12,18 @@ import {
 import {
   ArrowRight,
   ChevronDown,
-  Code,
-  Blocks,
-  Globe,
   Zap,
+  TrendingUp,
+  Rocket,
+  Target,
 } from "lucide-react";
+
+// Types
+interface PowerWord {
+  text: string;
+  icon: React.ComponentType<{ className?: string }>;
+  color: string;
+}
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
@@ -26,247 +32,266 @@ export function Hero() {
     offset: ["start start", "end start"],
   });
 
-  // Parallax effect for background elements
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
-  // Tech icons to showcase expertise
-  const techIcons = [
-    { icon: <Code className="h-6 w-6" />, label: "Web3" },
-    { icon: <Blocks className="h-6 w-6" />, label: "Blockchain" },
-    { icon: <Globe className="h-6 w-6" />, label: "Fullstack" },
-    { icon: <Zap className="h-6 w-6" />, label: "AI" },
+  // Power words that rotate - focused on transformation outcomes
+  const powerWords: PowerWord[] = [
+    { text: "CONVERT", icon: Target, color: "brand-orange" },
+    { text: "FUTURIZE", icon: Rocket, color: "brand-blue" },
+    { text: "GROW", icon: TrendingUp, color: "brand-yellow" },
+    { text: "ACTIVATE", icon: Zap, color: "brand-orange" },
   ];
 
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentWordIndex((prev) => (prev + 1) % powerWords.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [powerWords.length]);
+
+  const currentWord = powerWords[currentWordIndex];
+  const CurrentIcon = currentWord?.icon || Target;
+
   return (
-    <div ref={ref} className="relative min-h-screen overflow-hidden bg-grid">
-      {/* Animated gradient background */}
+    <motion.div
+      ref={ref}
+      className="relative min-h-screen overflow-hidden bg-grid"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
+      {/* Dynamic Background Effects */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/90 to-black/70"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-black/95 to-black/90" />
+
+        {/* Animated Orbs */}
         <motion.div
           style={{ y, opacity }}
-          className="absolute -bottom-40 -right-40 h-[500px] w-[500px] rounded-full bg-brand-blue/30 blur-[120px]"
-        ></motion.div>
+          className="absolute -bottom-40 -right-40 h-[600px] w-[600px] rounded-full blur-[150px]"
+          animate={{
+            background: [
+              "radial-gradient(circle, rgba(85,66,255,0.2) 0%, transparent 70%)",
+              "radial-gradient(circle, rgba(255,107,0,0.2) 0%, transparent 70%)",
+              "radial-gradient(circle, rgba(255,213,0,0.2) 0%, transparent 70%)",
+              "radial-gradient(circle, rgba(85,66,255,0.2) 0%, transparent 70%)",
+            ],
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+
         <motion.div
           style={{ y, opacity }}
-          className="absolute -top-40 -left-40 h-[500px] w-[500px] rounded-full bg-brand-orange/20 blur-[120px]"
-        ></motion.div>
+          className="absolute -top-40 -left-40 h-[600px] w-[600px] rounded-full blur-[150px]"
+          animate={{
+            background: [
+              "radial-gradient(circle, rgba(255,107,0,0.15) 0%, transparent 70%)",
+              "radial-gradient(circle, rgba(255,213,0,0.15) 0%, transparent 70%)",
+              "radial-gradient(circle, rgba(85,66,255,0.15) 0%, transparent 70%)",
+              "radial-gradient(circle, rgba(255,107,0,0.15) 0%, transparent 70%)",
+            ],
+          }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        {/* Floating Elements */}
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 bg-white/20 rounded-full"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [-20, 20, -20],
+              opacity: [0.2, 0.8, 0.2],
+              scale: [0.8, 1.2, 0.8],
+            }}
+            transition={{
+              duration: 3 + Math.random() * 2,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+            }}
+          />
+        ))}
       </div>
 
-      {/* Large background text */}
-      <motion.div
-        className="absolute bottom-10 right-0 z-0 overflow-hidden"
-        style={{ opacity: useTransform(scrollYProgress, [0, 0.5], [0.2, 0]) }}
-      >
-        <motion.h1
-          initial={{ x: 100, opacity: 0 }}
-          animate={{ x: 0, opacity: 0.15 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="text-[12rem] font-bold tracking-tighter text-white select-none"
-        >
-          WEB/APP
-        </motion.h1>
-      </motion.div>
-
-      {/* Hero content */}
+      {/* Main Hero Content */}
       <div className="container relative z-10 mx-auto flex min-h-screen items-center pt-20 px-5">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-          {/* Left content - Text */}
+        <div className="w-full max-w-7xl mx-auto">
           <motion.div
-            className="md:col-span-7 space-y-6"
-            initial={{ opacity: 0, y: 20 }}
+            className="text-center space-y-8"
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            {/* Headline with animated text */}
-            <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-sm backdrop-blur-sm border border-white/20">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-orange opacity-75"></span>
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-orange"></span>
+            {/* Status Badge - Builds Credibility */}
+            <motion.div
+              className="inline-flex items-center gap-3 rounded-full bg-black/40 backdrop-blur-sm border border-white/20 px-6 py-3 text-sm"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              whileHover={{ scale: 1.05, backgroundColor: "rgba(0,0,0,0.6)" }}
+            >
+              <span className="relative flex h-3 w-3">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
+                <span className="relative inline-flex h-3 w-3 rounded-full bg-green-500" />
               </span>
-              <span>Transforming Ideas into Digital Reality</span>
+              <span className="text-white/80 font-medium tracking-wide font-inter">
+                THE BUSINESS TRANSFORMATION LAB
+              </span>
+            </motion.div>
+
+            {/* Main Headline - The Hook */}
+            <div className="space-y-4">
+              <motion.h1
+                className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black font-urbanist tracking-tighter leading-none"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              >
+                <span className="block text-white mb-2">WE</span>
+
+                {/* Rotating Power Words */}
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentWordIndex}
+                    className={`block ${currentWord.color} flex items-center justify-center gap-6`}
+                    initial={{ opacity: 0, y: 100, rotateX: -90 }}
+                    animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                    exit={{ opacity: 0, y: -100, rotateX: 90 }}
+                    transition={{
+                      duration: 0.8,
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                    }}
+                  >
+                    <CurrentIcon className="h-16 w-16 md:h-20 md:w-20 lg:h-24 lg:w-24" />
+                    <span className="font-urbanist">{currentWord.text}</span>
+                  </motion.div>
+                </AnimatePresence>
+
+                <span className="block text-white mt-2">BUSINESSES</span>
+              </motion.h1>
+
+              {/* Value Proposition - The Promise */}
+              <motion.div
+                className="space-y-4"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.2 }}
+              >
+                <p className="text-xl md:text-2xl lg:text-3xl text-white/70 max-w-4xl mx-auto font-inter leading-relaxed">
+                  From{" "}
+                  <span className="brand-orange font-semibold">
+                    outdated systems
+                  </span>{" "}
+                  to{" "}
+                  <span className="brand-blue font-semibold">
+                    digital empires
+                  </span>
+                  .
+                </p>
+                <p className="text-lg md:text-xl text-white/60 max-w-3xl mx-auto font-inter">
+                  We don't just build—we{" "}
+                  <span className="brand-yellow font-semibold">transform</span>{" "}
+                  your entire business DNA.
+                </p>
+              </motion.div>
             </div>
 
-            <motion.h1
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-urbanist"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
-            >
-              <span className="brand-orange">DE</span>CODE NEXT
-              <span className="block mt-2 text-base md:text-xl font-normal font-inter text-white/80">
-                Powering up your{" "}
-                <span className="text-brand-orange">business</span> to reach new
-                <span className="text-brand-blue"> heights</span>
-              </span>
-            </motion.h1>
-
+            {/* Social Proof / Benefits */}
             <motion.div
-              className="space-y-4 max-w-xl"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.6 }}
+              className="flex flex-wrap justify-center gap-4 pt-8"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.4 }}
             >
-              <p className="text-lg md:text-xl text-white/80 font-inter leading-relaxed">
-                Full-stack Engineer & Software Specialist building the next
-                generation of web applications that transform businesses.
-              </p>
+              {[
+                { text: "10X Revenue Growth", icon: "📈" },
+                { text: "Future-Proof Tech", icon: "🚀" },
 
-              <div className="flex flex-wrap gap-2 pt-2">
-                {techIcons.map((item, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{
-                      duration: 0.3,
-                      delay: 0.8 + index * 0.1,
-                      ease: "easeOut",
-                    }}
-                    className="flex items-center gap-1 rounded-full bg-white/10 px-3 py-1.5 text-sm backdrop-blur-sm border border-white/10"
-                  >
-                    {item.icon}
-                    <span>{item.label}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div
-              className="flex flex-wrap gap-4 pt-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.9 }}
-            >
-              <Link href="#contact" className="btn btn-default btn-lg group">
-                Get in touch
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-              <Link href="#projects" className="btn btn-outline btn-lg">
-                View Projects
-              </Link>
-            </motion.div>
-          </motion.div>
-
-          {/* Right content - Visual element */}
-          <motion.div
-            className="md:col-span-5 flex justify-center"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.5 }}
-          >
-            <div className="relative h-[400px] w-[400px]">
-              {/* Modern abstract 3D-like shape */}
-              <div className="absolute top-0 left-0 h-full w-full">
-                <div className="absolute top-1/2 left-1/2 h-60 w-60 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/20 opacity-80"></div>
-                <div className="absolute top-1/2 left-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/15 opacity-60"></div>
-                <div className="absolute top-1/2 left-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 opacity-40"></div>
-
-                {/* Animated dots/particles */}
-                {[...Array(5)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute h-3 w-3 rounded-full bg-brand-orange"
-                    style={{
-                      top: `${20 + i * 15}%`,
-                      left: `${20 + i * 15}%`,
-                    }}
-                    animate={{
-                      scale: [1, 1.2, 1],
-                      opacity: [0.7, 1, 0.7],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      delay: i * 0.3,
-                    }}
-                  />
-                ))}
-                {[...Array(5)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute h-3 w-3 rounded-full bg-brand-blue"
-                    style={{
-                      bottom: `${20 + i * 15}%`,
-                      right: `${20 + i * 15}%`,
-                    }}
-                    animate={{
-                      scale: [1, 1.2, 1],
-                      opacity: [0.7, 1, 0.7],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      delay: i * 0.3 + 0.5,
-                    }}
-                  />
-                ))}
-              </div>
-
-              {/* Center element */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                { text: "Competitive Edge", icon: "⚡" },
+              ].map((benefit, index) => (
                 <motion.div
-                  className="h-40 w-40 rounded-2xl bg-gradient-to-br from-brand-blue via-brand-blue/70 to-brand-orange/50 p-0.5"
-                  animate={{
-                    rotate: 360,
+                  key={index}
+                  className="flex items-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-4 py-2 hover:bg-white/10 transition-all duration-300"
+                  whileHover={{
+                    scale: 1.05,
+                    backgroundColor: "rgba(255,255,255,0.1)",
+                    borderColor: "rgba(255,255,255,0.2)",
                   }}
-                  transition={{
-                    duration: 20,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.5 + index * 0.1 }}
                 >
-                  <div className="h-full w-full rounded-2xl bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-                    <svg viewBox="0 0 100 100" width="100%" height="100%">
-                      <defs>
-                        <linearGradient
-                          id="grad"
-                          x1="0%"
-                          y1="0%"
-                          x2="100%"
-                          y2="100%"
-                        >
-                          <stop offset="0%" stopColor="#5542FF" />
-                          <stop offset="100%" stopColor="#FF6B00" />
-                        </linearGradient>
-                      </defs>
-                      <path
-                        fill="none"
-                        stroke="url(#grad)"
-                        strokeWidth="4"
-                        strokeLinecap="round"
-                        d="M30,40 L70,40 M30,50 L70,50 M30,60 L70,60"
-                      />
-                      <motion.path
-                        fill="none"
-                        stroke="url(#grad)"
-                        strokeWidth="4"
-                        strokeLinecap="round"
-                        d="M40,25 L60,25 M25,40 L25,60 M40,75 L60,75 M75,40 L75,60"
-                        animate={{
-                          pathLength: [0, 1, 0],
-                        }}
-                        transition={{
-                          duration: 4,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        }}
-                      />
-                    </svg>
-                  </div>
+                  <span className="text-lg">{benefit.icon}</span>
+                  <span className="text-white/80 text-sm font-medium font-inter">
+                    {benefit.text}
+                  </span>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            {/* Call-to-Action Section - The Close */}
+            <motion.div
+              className="pt-12 space-y-6"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.6 }}
+            >
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                {/* Primary CTA */}
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Link
+                    href="#contact"
+                    className="group inline-flex items-center gap-3 bg-brand-orange hover:bg-brand-orange/90 text-black font-bold text-lg px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl font-urbanist"
+                  >
+                    START YOUR TRANSFORMATION
+                    <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </motion.div>
+
+                {/* Secondary CTA */}
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Link
+                    href="#projects"
+                    className="inline-flex items-center gap-3 bg-transparent border-2 border-white/30 hover:border-white/50 hover:bg-white/5 text-white font-semibold text-lg px-8 py-4 rounded-full transition-all duration-300 font-urbanist"
+                  >
+                    SEE THE RESULTS
+                  </Link>
                 </motion.div>
               </div>
-            </div>
+
+              {/* Risk Reversal */}
+              <motion.p
+                className="text-white/50 text-sm font-inter"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 2 }}
+              >
+                ⚡ Free strategy session • No commitment required • Results
+                guaranteed
+              </motion.p>
+            </motion.div>
           </motion.div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll Indicator */}
       <motion.div
         className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
         animate={{
           y: [0, 10, 0],
-          opacity: [0.6, 1, 0.6],
+          opacity: [0.4, 1, 0.4],
         }}
         transition={{
           duration: 2,
@@ -274,8 +299,33 @@ export function Hero() {
           ease: "easeInOut",
         }}
       >
-        <ChevronDown className="h-8 w-8 text-white/70" />
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-white/60 text-xs font-medium tracking-wider font-inter">
+            SCROLL TO DISCOVER
+          </span>
+          <ChevronDown className="h-6 w-6 text-white/60" />
+        </div>
       </motion.div>
-    </div>
+
+      {/* Background Moving Text */}
+      <motion.div
+        className="absolute bottom-0 right-0 z-0 overflow-hidden pointer-events-none select-none"
+        style={{
+          opacity: useTransform(scrollYProgress, [0, 0.3], [0.05, 0]),
+        }}
+      >
+        <motion.h2
+          className="text-[12rem] md:text-[16rem] lg:text-[20rem] font-black text-white/5 leading-none font-urbanist"
+          animate={{ x: [0, -100, 0] }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        >
+          TRANSFORM
+        </motion.h2>
+      </motion.div>
+    </motion.div>
   );
 }
