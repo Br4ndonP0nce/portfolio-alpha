@@ -130,44 +130,6 @@ export function Contact() {
       ref={sectionRef}
       className="py-32 px-4 md:px-0 relative overflow-hidden"
     >
-      {/* Background Elements */}
-      <div className="absolute inset-0 z-0">
-        <motion.div
-          className="absolute top-1/4 right-0 h-[600px] w-[600px] rounded-full blur-[150px]"
-          animate={{
-            background: [
-              "radial-gradient(circle, rgba(255,107,0,0.1) 0%, transparent 70%)",
-              "radial-gradient(circle, rgba(85,66,255,0.1) 0%, transparent 70%)",
-              "radial-gradient(circle, rgba(255,213,0,0.1) 0%, transparent 70%)",
-              "radial-gradient(circle, rgba(255,107,0,0.1) 0%, transparent 70%)",
-            ],
-          }}
-          transition={{ duration: 8, repeat: Infinity }}
-        />
-
-        {/* Floating Elements */}
-        {[...Array(6)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-3 h-3 bg-gradient-to-r from-brand-orange to-brand-blue rounded-full opacity-30"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [-15, 15, -15],
-              scale: [0.8, 1.2, 0.8],
-              opacity: [0.2, 0.8, 0.2],
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-            }}
-          />
-        ))}
-      </div>
-
       <div className="container mx-auto relative z-10">
         {/* Section Header */}
         <motion.div
@@ -178,7 +140,7 @@ export function Contact() {
         >
           {/* Section Badge */}
           <motion.div
-            className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-6 py-3 mb-6"
+            className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-6 py-3 mb-6"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={
               isInView ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }

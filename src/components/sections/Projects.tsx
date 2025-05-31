@@ -45,6 +45,22 @@ const projectsData = [
     featured: true,
   },
   {
+    projectName: "Edición Persuasiva",
+    category: "Complete Business Automation Ecosystem",
+    description:
+      "Full-stack sales automation platform featuring a high-converting landing page funnel, comprehensive CRM for lead management and student onboarding, cloud automation workflows, and integrated payment processing. Built with Next.js, Firebase, and n8n automations, delivering $4k+ yearly infrastructure savings through optimized cloud architecture.",
+    link: "https://edicionpersuasiva.com", // or whatever the main domain is
+    imgLink:
+      "https://firebasestorage.googleapis.com/v0/b/edicion-persuasiva.firebasestorage.app/o/public%2Fimages%2Fpersuasion1.jpg?alt=media&token=81cbeb6c-fee6-4776-82e7-0c038aa6042e",
+    tags: ["Next.js", "Firebase", "CRM", "Automation", "SaaS", "Education"],
+    metrics: {
+      revenue: "$4k+ Infrastructure Savings",
+      growth: "Complete Sales Automation",
+    },
+    status: "Top Video Editing Academy in Latin America",
+    featured: true,
+  },
+  {
     projectName: "Natural Ancestors",
     category: "Cultural Heritage Web3",
     description:
@@ -74,6 +90,36 @@ const projectsData = [
       growth: "99.9% Uptime",
     },
     status: "Mainnet Ready",
+    featured: true,
+  },
+  {
+    projectName: "AtlasDB",
+    category: "AI Infrastructure",
+    description:
+      "First decentralized database for AI agents, enabling secure, rapid learning through collective intelligence and shared experiences.",
+    link: "https://www.atlasdb.dev/",
+    imgLink: "/images/atlas.png",
+    tags: ["AI", "Database", "Decentralized", "Machine Learning"],
+    metrics: {
+      revenue: "Sub-10ms Response",
+    },
+    status: "Beta Launch",
+    featured: false,
+  },
+  {
+    projectName: "Kollabs",
+    category: "Marketing & Growth",
+    description:
+      "Premium KOL marketing solutions connecting crypto projects with top-tier influencers to drive authentic growth and market impact through strategic partnerships.",
+    link: "https://kollabs.tech/",
+    imgLink: "/images/kollab.png",
+    tags: ["KOL Marketing", "Crypto", "Influencer", "Web3", "Growth Strategy"],
+    metrics: {
+      revenue: "250+ KOLs Network",
+      growth: "40M+ Monthly Views",
+      success: "300%+ Avg Growth",
+    },
+    status: "Live & Scaling",
     featured: true,
   },
   {
