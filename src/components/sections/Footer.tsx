@@ -236,9 +236,9 @@ export function Footer() {
                 </p>
 
                 <p className="text-white/60 font-inter text-sm">
-                  <span className="brand-yellow font-semibold">$50M+</span> in
+                  <span className="brand-yellow font-semibold">$7.5M+</span> in
                   client value generated •
-                  <span className="brand-orange font-semibold"> 100+</span>{" "}
+                  <span className="brand-orange font-semibold"> 15+</span>{" "}
                   successful transformations
                 </p>
               </div>

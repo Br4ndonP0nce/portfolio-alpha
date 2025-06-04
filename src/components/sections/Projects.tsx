@@ -92,20 +92,7 @@ const projectsData = [
     status: "Mainnet Ready",
     featured: true,
   },
-  {
-    projectName: "AtlasDB",
-    category: "AI Infrastructure",
-    description:
-      "First decentralized database for AI agents, enabling secure, rapid learning through collective intelligence and shared experiences.",
-    link: "https://www.atlasdb.dev/",
-    imgLink: "/images/atlas.png",
-    tags: ["AI", "Database", "Decentralized", "Machine Learning"],
-    metrics: {
-      revenue: "Sub-10ms Response",
-    },
-    status: "Beta Launch",
-    featured: false,
-  },
+
   {
     projectName: "Kollabs",
     category: "Marketing & Growth",

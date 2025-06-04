@@ -112,7 +112,7 @@ const techCategories = [
         impact: "Sub-second load times globally",
       },
       {
-        name: "Database sharding & replication",
+        name: "Cloud services and infrastructure",
         impact: "Handles billion+ records",
       },
       {
@@ -208,7 +208,6 @@ export function Tech() {
             <span className="text-white">Our </span>
             <span className="brand-yellow">Tech</span>
             <br />
-            <span className="brand-orange">Arsenal</span>
           </h2>
 
           <p className="text-xl text-white/70 max-w-3xl mx-auto font-inter leading-relaxed">
@@ -308,24 +307,6 @@ export function Tech() {
                     </div>
 
                     {/* CTA */}
-                    <motion.div
-                      className="mt-6 pt-6 border-t border-white/10"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={
-                        isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
-                      }
-                      transition={{ delay: 0.9 + index * 0.1 }}
-                    >
-                      <button
-                        className={`
-                        group/cta inline-flex items-center gap-2 text-sm font-semibold 
-                        ${category.highlightColor} hover:text-white transition-colors font-urbanist
-                      `}
-                      >
-                        Explore this technology
-                        <ChevronRight className="h-3 w-3 transition-transform group-hover/cta:translate-x-1" />
-                      </button>
-                    </motion.div>
                   </div>
                 </div>
               </motion.div>
