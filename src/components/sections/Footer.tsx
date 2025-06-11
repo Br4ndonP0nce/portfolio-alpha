@@ -126,7 +126,7 @@ export function Footer() {
     },
     {
       name: "WhatsApp",
-      href: "http://wa.me/525522838461",
+      href: "http://wa.me/",
       icon: FaWhatsapp,
       color: "hover:text-green-400",
       followers: "Chat",
@@ -149,8 +149,8 @@ export function Footer() {
     {
       icon: Phone,
       label: "Phone",
-      value: "+52 55 2283 8461",
-      href: "tel:+525522838461",
+      value: "+52 ",
+      href: "tel:+52",
     },
     {
       icon: MapPin,
