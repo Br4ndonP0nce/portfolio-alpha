@@ -58,19 +58,23 @@ export function Hero() {
   return (
     <motion.div
       ref={ref}
-      className="relative min-h-screen overflow-hidden bg-grid"
+      className="min-h-screen w-full bg-[#0f0f0f] relative text-white"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      {/* Dynamic Background Effects */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-black/95 to-black/90" />
-
-        {/* Animated Orbs */}
-
-        {/* Floating Elements */}
-      </div>
+      {/* Crosshatch Art - Dark Pattern */}
+      <div
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          backgroundImage: `
+            repeating-linear-gradient(22.5deg, transparent, transparent 2px, rgba(16, 185, 129, 0.18) 2px, rgba(16, 185, 129, 0.18) 3px, transparent 3px, transparent 8px),
+            repeating-linear-gradient(67.5deg, transparent, transparent 2px, rgba(245, 101, 101, 0.10) 2px, rgba(245, 101, 101, 0.10) 3px, transparent 3px, transparent 8px),
+            repeating-linear-gradient(112.5deg, transparent, transparent 2px, rgba(234, 179, 8, 0.08) 2px, rgba(234, 179, 8, 0.08) 3px, transparent 3px, transparent 8px),
+            repeating-linear-gradient(157.5deg, transparent, transparent 2px, rgba(249, 115, 22, 0.06) 2px, rgba(249, 115, 22, 0.06) 3px, transparent 3px, transparent 8px)
+          `,
+        }}
+      />
 
       {/* Main Hero Content */}
       <div className="container relative z-10 mx-auto flex min-h-screen items-center pt-20 px-5">
@@ -165,7 +169,6 @@ export function Hero() {
               {[
                 { text: "10X Revenue Growth", icon: "📈" },
                 { text: "Future-Proof Tech", icon: "🚀" },
-
                 { text: "Competitive Edge", icon: "⚡" },
               ].map((benefit, index) => (
                 <motion.div
