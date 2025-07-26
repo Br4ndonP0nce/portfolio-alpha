@@ -148,19 +148,19 @@ export function Contact() {
             transition={{ delay: 0.2 }}
           >
             <MessageCircle className="h-4 w-4 brand-orange" />
-            <span className="text-sm font-medium text-white/80 font-inter">
+            <span className="text-sm font-medium text-white/80 font-armstrong">
               LET'S BUILD SOMETHING EXTRAORDINARY
             </span>
           </motion.div>
 
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-black font-urbanist mb-6">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-armstrong-extrabold mb-6">
             <span className="text-white">Ready to </span>
             <span className="brand-orange">Transform</span>
             <br />
             <span className="text-white">Your Business?</span>
           </h2>
 
-          <p className="text-xl text-white/70 max-w-3xl mx-auto font-inter leading-relaxed">
+          <p className="text-xl text-white/70 max-w-3xl mx-auto font-armstrong-oblique leading-relaxed">
             Join the ranks of visionary leaders who chose to{" "}
             <span className="brand-yellow font-semibold">future-proof</span>{" "}
             their business. Your transformation starts with a single
@@ -186,10 +186,10 @@ export function Contact() {
                 }
                 transition={{ delay: 0.5 }}
               >
-                <h3 className="text-xl font-bold mb-3 font-urbanist text-white">
+                <h3 className="text-xl font-bold mb-3 font-armstrong-extrabold text-white">
                   🚀 Ready to take the next step?
                 </h3>
-                <p className="text-white/80 font-inter leading-relaxed">
+                <p className="text-white/80 font-armstrong leading-relaxed">
                   Want to know how we can help you generate{" "}
                   <span className="brand-orange font-semibold">more </span>
                   revenue? Lets talk about your project.
@@ -204,7 +204,7 @@ export function Contact() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.9 }}
             >
-              <h4 className="text-lg font-semibold text-white font-urbanist mb-4">
+              <h4 className="text-lg font-semibold text-white font-armstrong-extrabold mb-4">
                 Our Commitment to You:
               </h4>
               {guarantees.map((guarantee, index) => {
@@ -221,7 +221,7 @@ export function Contact() {
                     whileHover={{ scale: 1.02 }}
                   >
                     <Icon className={`h-5 w-5 ${guarantee.color}`} />
-                    <span className="text-white/80 font-inter">
+                    <span className="text-white/80 font-armstrong">
                       {guarantee.text}
                     </span>
                   </motion.div>
@@ -236,7 +236,7 @@ export function Contact() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 1.2 }}
             >
-              <h4 className="text-lg font-semibold text-white font-urbanist">
+              <h4 className="text-lg font-semibold text-white font-armstrong-extrabold">
                 Connect Directly:
               </h4>
               <div className="flex gap-4">
@@ -253,7 +253,7 @@ export function Contact() {
                       whileTap={{ scale: 0.95 }}
                     >
                       <Icon className="h-6 w-6 mb-2" />
-                      <span className="text-xs text-white/60 font-inter text-center">
+                      <span className="text-xs text-white/60 font-armstrong text-center">
                         {social.followers}
                       </span>
                     </motion.a>
@@ -273,10 +273,10 @@ export function Contact() {
             <div className="bg-gradient-to-br from-black/40 to-black/20 backdrop-blur-sm border border-white/10 rounded-3xl p-8 lg:p-12">
               <form onSubmit={handleSubmit} className="space-y-8">
                 <div className="text-center mb-8">
-                  <h3 className="text-3xl font-bold text-white font-urbanist mb-2">
+                  <h3 className="text-3xl font-bold text-white font-armstrong-extrabold mb-2">
                     Get Your Free Strategy Session
                   </h3>
-                  <p className="text-white/60 font-inter">
+                  <p className="text-white/60 font-armstrong-oblique">
                     Tell us about your vision, and we'll show you how to make it
                     reality.
                   </p>
@@ -294,7 +294,7 @@ export function Contact() {
                   <div className="space-y-2">
                     <label
                       htmlFor="name"
-                      className="text-sm font-medium text-white/80 font-inter"
+                      className="text-sm font-medium text-white/80 font-armstrong"
                     >
                       Full Name *
                     </label>
@@ -306,7 +306,7 @@ export function Contact() {
                       onChange={handleChange}
                       disabled={isSubmitting || isSubmitted}
                       required
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/40 focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 transition-all font-inter"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/40 focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 transition-all font-armstrong"
                     />
                   </div>
 
@@ -314,7 +314,7 @@ export function Contact() {
                   <div className="space-y-2">
                     <label
                       htmlFor="email"
-                      className="text-sm font-medium text-white/80 font-inter"
+                      className="text-sm font-medium text-white/80 font-armstrong"
                     >
                       Business Email *
                     </label>
@@ -327,7 +327,7 @@ export function Contact() {
                       onChange={handleChange}
                       disabled={isSubmitting || isSubmitted}
                       required
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/40 focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 transition-all font-inter"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/40 focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 transition-all font-armstrong"
                     />
                   </div>
 
@@ -335,7 +335,7 @@ export function Contact() {
                   <div className="space-y-2">
                     <label
                       htmlFor="company"
-                      className="text-sm font-medium text-white/80 font-inter"
+                      className="text-sm font-medium text-white/80 font-armstrong"
                     >
                       Company Name
                     </label>
@@ -346,7 +346,7 @@ export function Contact() {
                       value={formState.company}
                       onChange={handleChange}
                       disabled={isSubmitting || isSubmitted}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/40 focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 transition-all font-inter"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/40 focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 transition-all font-armstrong"
                     />
                   </div>
 
@@ -354,7 +354,7 @@ export function Contact() {
                   <div className="space-y-2">
                     <label
                       htmlFor="projectType"
-                      className="text-sm font-medium text-white/80 font-inter"
+                      className="text-sm font-medium text-white/80 font-armstrong"
                     >
                       Project Type
                     </label>
@@ -364,7 +364,7 @@ export function Contact() {
                       value={formState.projectType}
                       onChange={handleChange}
                       disabled={isSubmitting || isSubmitted}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 transition-all font-inter"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 transition-all font-armstrong"
                     >
                       <option value="" className="bg-black">
                         Select project type
@@ -381,7 +381,7 @@ export function Contact() {
                   <div className="space-y-2 md:col-span-2">
                     <label
                       htmlFor="budget"
-                      className="text-sm font-medium text-white/80 font-inter"
+                      className="text-sm font-medium text-white/80 font-armstrong"
                     >
                       Investment Budget
                     </label>
@@ -391,7 +391,7 @@ export function Contact() {
                       value={formState.budget}
                       onChange={handleChange}
                       disabled={isSubmitting || isSubmitted}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 transition-all font-inter"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 transition-all font-armstrong"
                     >
                       <option value="" className="bg-black">
                         Select your investment range
@@ -422,14 +422,14 @@ export function Contact() {
                     disabled={isSubmitting || isSubmitted}
                     required
                     rows={5}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/40 focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 transition-all resize-none font-inter"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/40 focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 transition-all resize-none font-armstrong"
                   />
                 </div>
 
                 {/* Submit Button */}
                 <motion.button
                   type="submit"
-                  className={`w-full py-4 px-8 font-bold text-lg rounded-xl transition-all font-urbanist ${
+                  className={`w-full py-4 px-8 font-bold text-lg rounded-xl transition-all font-armstrong ${
                     isSubmitted
                       ? "bg-green-600 hover:bg-green-700 text-white"
                       : "bg-brand-orange hover:bg-brand-orange/90 text-black"
@@ -476,7 +476,7 @@ export function Contact() {
                 </motion.button>
 
                 {/* Footer Text */}
-                <div className="text-center text-white/50 text-sm font-inter">
+                <div className="text-center text-white/50 text-sm font-armstrong">
                   <p>
                     ⚡ Free consultation • No obligation • 48-hour response
                     guarantee

@@ -238,19 +238,19 @@ export function Projects() {
             transition={{ delay: 0.2 }}
           >
             <Award className="h-4 w-4 brand-orange" />
-            <span className="text-sm font-medium text-white/80 font-inter">
+            <span className="text-sm font-medium text-white/80 font-armstrong">
               PORTFOLIO OF SUCCESS
             </span>
           </motion.div>
 
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-black font-urbanist mb-6">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-armstrong-extrabold mb-6">
             <span className="text-white">Our </span>
             <span className="brand-orange">Success</span>
             <br />
             <span className="text-white">Stories</span>
           </h2>
 
-          <p className="text-xl text-white/70 max-w-3xl mx-auto font-inter leading-relaxed">
+          <p className="text-xl text-white/70 max-w-3xl mx-auto font-armstrong-oblique leading-relaxed">
             Real transformations. Real results.{" "}
             <span className="brand-yellow font-semibold">$7.5M+</span> in client
             value generated through cutting-edge technology solutions throughout
@@ -307,43 +307,43 @@ export function Projects() {
                       <div className="p-8 lg:p-12">
                         <div className="space-y-6">
                           {/* Category */}
-                          <div className="text-brand-orange font-medium text-sm uppercase tracking-wider font-inter">
+                          <div className="text-brand-orange font-medium text-sm uppercase tracking-wider font-armstrong">
                             {project.category}
                           </div>
 
                           {/* Title */}
-                          <h3 className="text-3xl lg:text-4xl font-black font-urbanist text-white">
+                          <h3 className="text-3xl lg:text-4xl font-armstrong-extrabold text-white">
                             {project.projectName}
                           </h3>
 
                           {/* Description */}
-                          <p className="text-lg text-white/70 font-inter leading-relaxed">
+                          <p className="text-lg text-white/70 font-armstrong-oblique leading-relaxed">
                             {project.description}
                           </p>
 
                           {/* Metrics */}
                           <div className="grid grid-cols-3 gap-4">
                             <div className="text-center p-3 bg-white/5 rounded-xl">
-                              <div className="text-brand-orange font-bold text-sm font-inter">
+                              <div className="text-brand-orange font-bold text-sm font-armstrong">
                                 {project.metrics.impact}
                               </div>
-                              <div className="text-white/50 text-xs">
+                              <div className="text-white/50 text-xs font-armstrong">
                                 Impact
                               </div>
                             </div>
                             <div className="text-center p-3 bg-white/5 rounded-xl">
-                              <div className="text-brand-blue font-bold text-sm font-inter">
+                              <div className="text-brand-blue font-bold text-sm font-armstrong">
                                 {project.metrics.revenue}
                               </div>
-                              <div className="text-white/50 text-xs">
+                              <div className="text-white/50 text-xs font-armstrong">
                                 Revenue
                               </div>
                             </div>
                             <div className="text-center p-3 bg-white/5 rounded-xl">
-                              <div className="text-brand-yellow font-bold text-sm font-inter">
+                              <div className="text-brand-yellow font-bold text-sm font-armstrong">
                                 {project.metrics.growth}
                               </div>
-                              <div className="text-white/50 text-xs">
+                              <div className="text-white/50 text-xs font-armstrong">
                                 Growth
                               </div>
                             </div>
@@ -355,7 +355,7 @@ export function Projects() {
                               <Badge
                                 key={i}
                                 variant="secondary"
-                                className="bg-white/10 text-white/80 border-white/10 font-inter"
+                                className="bg-white/10 text-white/80 border-white/10 font-armstrong"
                               >
                                 {tag}
                               </Badge>
@@ -368,7 +368,7 @@ export function Projects() {
                               asChild
                               variant="default"
                               size="lg"
-                              className="bg-brand-orange hover:bg-brand-orange/90 text-black font-bold font-urbanist"
+                              className="bg-brand-orange hover:bg-brand-orange/90 text-black font-bold font-armstrong"
                             >
                               <a
                                 href={project.link}
@@ -383,7 +383,7 @@ export function Projects() {
                             <Button
                               variant="outline"
                               size="lg"
-                              className="border-white/30 text-white hover:bg-white/10 font-urbanist"
+                              className="border-white/30 text-white hover:bg-white/10 font-armstrong"
                             >
                               Case Study
                             </Button>
@@ -443,7 +443,7 @@ export function Projects() {
                 <button
                   key={category}
                   onClick={() => setFilter(category)}
-                  className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors font-inter ${
+                  className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors font-armstrong ${
                     filter === category
                       ? "bg-brand-orange text-black"
                       : "text-white/70 hover:text-white hover:bg-white/10"
@@ -490,13 +490,13 @@ export function Projects() {
                   <CardContent className="p-6">
                     <div className="space-y-4">
                       <div>
-                        <div className="text-brand-orange text-xs uppercase tracking-wider font-medium mb-1 font-inter">
+                        <div className="text-brand-orange text-xs uppercase tracking-wider font-medium mb-1 font-armstrong">
                           {project.category}
                         </div>
-                        <CardTitle className="text-xl text-white font-urbanist mb-2">
+                        <CardTitle className="text-xl text-white font-armstrong-extrabold mb-2">
                           {project.projectName}
                         </CardTitle>
-                        <CardDescription className="text-white/70 font-inter line-clamp-3">
+                        <CardDescription className="text-white/70 font-armstrong line-clamp-3">
                           {project.description}
                         </CardDescription>
                       </div>
@@ -516,7 +516,7 @@ export function Projects() {
                           <Badge
                             key={i}
                             variant="secondary"
-                            className="bg-white/10 text-white/70 border-white/10 text-xs font-inter"
+                            className="bg-white/10 text-white/70 border-white/10 text-xs font-armstrong"
                           >
                             {tag}
                           </Badge>
@@ -538,7 +538,7 @@ export function Projects() {
                       asChild
                       variant="outline"
                       size="sm"
-                      className="w-full border-white/30 text-white hover:bg-white/10 font-urbanist"
+                      className="w-full border-white/30 text-white hover:bg-white/10 font-armstrong"
                     >
                       <a
                         href={project.link}
@@ -566,16 +566,16 @@ export function Projects() {
         >
           <div className="inline-flex flex-col sm:flex-row items-center gap-6 p-8 bg-gradient-to-r from-black/60 to-black/40 backdrop-blur-sm border border-white/10 rounded-2xl">
             <div className="text-center sm:text-left">
-              <h3 className="text-2xl font-bold text-white font-urbanist mb-2">
+              <h3 className="text-2xl font-bold text-white font-armstrong-extrabold mb-2">
                 Ready to be our next success story?
               </h3>
-              <p className="text-white/70 font-inter">
+              <p className="text-white/70 font-armstrong-oblique">
                 Join the ranks of businesses that have transformed their
                 industry with our solutions.
               </p>
             </div>
             <motion.a
-              className="px-8 py-4 bg-brand-orange hover:bg-brand-orange/90 text-black font-bold rounded-xl transition-colors font-urbanist whitespace-nowrap"
+              className="px-8 py-4 bg-brand-orange hover:bg-brand-orange/90 text-black font-bold rounded-xl transition-colors font-armstrong whitespace-nowrap"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               href="#contact"

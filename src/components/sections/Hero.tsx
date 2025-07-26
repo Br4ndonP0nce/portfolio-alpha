@@ -1,29 +1,12 @@
 // src/components/sections/Hero.tsx
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import Link from "next/link";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  AnimatePresence,
-} from "framer-motion";
-import {
-  ArrowRight,
-  ChevronDown,
-  Zap,
-  TrendingUp,
-  Rocket,
-  Target,
-} from "lucide-react";
-
-// Types
-interface PowerWord {
-  text: string;
-  icon: React.ComponentType<{ className?: string }>;
-  color: string;
-}
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowRight, ChevronDown } from "lucide-react";
+import RotatingText from "../animated/rotatingText";
+import Noise from "../animated/Noise";
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
@@ -35,26 +18,6 @@ export function Hero() {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
-  // Power words that rotate - focused on transformation outcomes
-  const powerWords: PowerWord[] = [
-    { text: "CONVERT", icon: Target, color: "brand-orange" },
-    { text: "FUTURIZE", icon: Rocket, color: "brand-blue" },
-    { text: "GROW", icon: TrendingUp, color: "brand-yellow" },
-    { text: "ACTIVATE", icon: Zap, color: "brand-orange" },
-  ];
-
-  const [currentWordIndex, setCurrentWordIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentWordIndex((prev) => (prev + 1) % powerWords.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [powerWords.length]);
-
-  const currentWord = powerWords[currentWordIndex];
-  const CurrentIcon = currentWord?.icon || Target;
-
   return (
     <motion.div
       ref={ref}
@@ -63,18 +26,30 @@ export function Hero() {
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      {/* Crosshatch Art - Dark Pattern */}
+      {/* Circuit Board - Dark Pattern */}
       <div
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
           backgroundImage: `
-            repeating-linear-gradient(22.5deg, transparent, transparent 2px, rgba(16, 185, 129, 0.18) 2px, rgba(16, 185, 129, 0.18) 3px, transparent 3px, transparent 8px),
-            repeating-linear-gradient(67.5deg, transparent, transparent 2px, rgba(245, 101, 101, 0.10) 2px, rgba(245, 101, 101, 0.10) 3px, transparent 3px, transparent 8px),
-            repeating-linear-gradient(112.5deg, transparent, transparent 2px, rgba(234, 179, 8, 0.08) 2px, rgba(234, 179, 8, 0.08) 3px, transparent 3px, transparent 8px),
-            repeating-linear-gradient(157.5deg, transparent, transparent 2px, rgba(249, 115, 22, 0.06) 2px, rgba(249, 115, 22, 0.06) 3px, transparent 3px, transparent 8px)
+            repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(34, 197, 94, 0.15) 19px, rgba(34, 197, 94, 0.15) 20px, transparent 20px, transparent 39px, rgba(34, 197, 94, 0.15) 39px, rgba(34, 197, 94, 0.15) 40px),
+            repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(34, 197, 94, 0.15) 19px, rgba(34, 197, 94, 0.15) 20px, transparent 20px, transparent 39px, rgba(34, 197, 94, 0.15) 39px, rgba(34, 197, 94, 0.15) 40px),
+            radial-gradient(circle at 20px 20px, rgba(16, 185, 129, 0.18) 2px, transparent 2px),
+            radial-gradient(circle at 40px 40px, rgba(16, 185, 129, 0.18) 2px, transparent 2px)
           `,
+          backgroundSize: "40px 40px, 40px 40px, 40px 40px, 40px 40px",
         }}
       />
+
+      {/* Noise Overlay */}
+      <div className="absolute inset-0 z-[2] pointer-events-none">
+        <Noise
+          patternSize={250}
+          patternScaleX={1}
+          patternScaleY={1}
+          patternRefreshInterval={2}
+          patternAlpha={10}
+        />
+      </div>
 
       {/* Main Hero Content */}
       <div className="container relative z-10 mx-auto flex min-h-screen items-center pt-20 px-5">
@@ -105,30 +80,26 @@ export function Hero() {
             {/* Main Headline - The Hook */}
             <div className="space-y-4">
               <motion.h1
-                className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black font-urbanist tracking-tighter leading-none"
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-armstrong-extrabold tracking-tighter leading-none"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
                 <span className="block text-white mb-2">WE</span>
 
-                {/* Rotating Power Words */}
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={currentWordIndex}
-                    className={`block ${currentWord.color} flex items-center justify-center gap-6`}
-                    initial={{ opacity: 0, y: 100, rotateX: -90 }}
-                    animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                    exit={{ opacity: 0, y: -100, rotateX: 90 }}
-                    transition={{
-                      duration: 0.8,
-                      ease: [0.25, 0.46, 0.45, 0.94],
-                    }}
-                  >
-                    <CurrentIcon className="h-16 w-16 md:h-20 md:w-20 lg:h-24 lg:w-24" />
-                    <span className="font-urbanist">{currentWord.text}</span>
-                  </motion.div>
-                </AnimatePresence>
+                {/* Rotating Text Component */}
+                <RotatingText
+                  texts={["CONVERT", "FUTURIZE", "GROW", "ACTIVATE"]}
+                  mainClassName="px-2 sm:px-2 md:px-3 text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-armstrong-extrabold tracking-tighter leading-none brand-orange overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
+                  staggerFrom="last"
+                  initial={{ y: "100%" }}
+                  animate={{ y: 0 }}
+                  exit={{ y: "-120%" }}
+                  staggerDuration={0.025}
+                  splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+                  transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                  rotationInterval={3000}
+                />
 
                 <span className="block text-white mt-2">BUSINESSES</span>
               </motion.h1>
@@ -140,7 +111,7 @@ export function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.2 }}
               >
-                <p className="text-xl md:text-2xl lg:text-3xl text-white/70 max-w-4xl mx-auto font-inter leading-relaxed">
+                <p className="text-lg sm:text-xl md:text-2xl lg:text-2xl xl:text-3xl text-white/70 max-w-4xl mx-auto font-armstrong-oblique leading-relaxed">
                   From{" "}
                   <span className="brand-orange font-semibold">
                     outdated systems
@@ -151,7 +122,7 @@ export function Hero() {
                   </span>
                   .
                 </p>
-                <p className="text-lg md:text-xl text-white/60 max-w-3xl mx-auto font-inter">
+                <p className="text-base sm:text-lg md:text-xl text-white/60 max-w-3xl mx-auto font-armstrong-oblique">
                   We don't just build—we{" "}
                   <span className="brand-yellow font-semibold">transform</span>{" "}
                   your entire business DNA.
@@ -243,25 +214,6 @@ export function Hero() {
       </div>
 
       {/* Scroll Indicator */}
-      <motion.div
-        className=" py-10 z-10 !text-2xl"
-        animate={{
-          y: [0, 10, 0],
-          opacity: [0.4, 1, 0.4],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      >
-        <div className="flex flex-col items-center gap-2">
-          <span className="text-white/60 font-medium tracking-wider font-inter">
-            SCROLL TO DISCOVER
-          </span>
-          <ChevronDown className="h-6 w-6 text-white/60" />
-        </div>
-      </motion.div>
 
       {/* Background Moving Text */}
       <motion.div

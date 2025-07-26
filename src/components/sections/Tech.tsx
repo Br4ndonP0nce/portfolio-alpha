@@ -1,161 +1,82 @@
 // src/components/sections/Tech.tsx
 "use client";
 
-import React, { useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
-import {
-  Zap,
-  Shield,
-  Rocket,
-  Brain,
-  Globe,
-  Database,
-  ChevronRight,
-  Star,
-} from "lucide-react";
+import React, { useRef, useState, useEffect } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import DecryptedText from "../animated/decryptedText";
+import { Globe, Shield, Brain, Rocket } from "lucide-react";
 
-// Enhanced tech categories with more persuasive messaging
-const techCategories = [
+// Tech stacks organized by specialization
+const techStacks = [
   {
-    title: "Fullstack ",
-    subtitle: "End-to-end solutions that scale",
-    highlightColor: "brand-orange",
+    title: "Full Stack Development",
+    subtitle: "End-to-end web applications",
     icon: Globe,
-    items: [
-      {
-        name: "Lightning-fast backend architecture",
-        impact: "99.9% uptime guaranteed",
-      },
-      {
-        name: "Pixel-perfect frontend experiences",
-        impact: "40% higher conversion rates",
-      },
-      {
-        name: "Database optimization mastery",
-        impact: "10x faster query performance",
-      },
-      {
-        name: "Cloud infrastructure that never sleeps",
-        impact: "Auto-scaling for any demand",
-      },
-      {
-        name: "Enterprise-grade security protocols",
-        impact: "Zero breach track record",
-      },
+    color: "text-orange-400",
+    borderColor: "border-orange-500/30",
+    bgColor: "bg-orange-500/5",
+    command: "npm run build",
+    technologies: [
+      "React • Next.js • TypeScript",
+      "Node.js • Express • FastAPI",
+      "PostgreSQL • MongoDB • Redis",
+      "AWS • Docker • Kubernetes",
+      "GraphQL • REST APIs",
     ],
-    gradient: "from-orange-500/20 to-red-500/20",
   },
   {
-    title: "Web3 & Blockchain ",
-    subtitle: "Future-proof digital assets",
-    highlightColor: "brand-blue",
+    title: "Blockchain & Web3",
+    subtitle: "Decentralized applications",
     icon: Shield,
-    items: [
-      {
-        name: "Smart contract development & auditing",
-        impact: "100% secure deployments",
-      },
-      {
-        name: "DeFi protocol integration",
-        impact: "Million-dollar TVL handling",
-      },
-      { name: "NFT marketplace creation", impact: "Celebrity client launches" },
-      {
-        name: "Token economics & launch strategy",
-        impact: "Multi-million raises",
-      },
-      {
-        name: "Cross-chain bridge development",
-        impact: "Seamless asset transfers",
-      },
+    color: "text-blue-400",
+    borderColor: "border-blue-500/30",
+    bgColor: "bg-blue-500/5",
+    command: "truffle deploy",
+    technologies: [
+      "Solidity • Rust • Web3.js",
+      "Ethereum • Polygon • Solana",
+      "DeFi protocols • Smart contracts",
+      "MetaMask • WalletConnect",
+      "IPFS • Chainlink oracles",
     ],
-    gradient: "from-blue-500/20 to-purple-500/20",
   },
   {
-    title: "AI & Automation ",
-    subtitle: "Intelligent business transformation",
-    highlightColor: "brand-yellow",
+    title: "AI & Machine Learning",
+    subtitle: "Intelligent automation",
     icon: Brain,
-    items: [
-      { name: "Custom AI agent development", impact: "80% task automation" },
-      {
-        name: "Machine learning model training",
-        impact: "Predictive accuracy >95%",
-      },
-      {
-        name: "Natural language processing",
-        impact: "Human-like interactions",
-      },
-      {
-        name: "Computer vision solutions",
-        impact: "Real-time object detection",
-      },
-      {
-        name: "Workflow automation systems",
-        impact: "500+ hours saved monthly",
-      },
+    color: "text-yellow-400",
+    borderColor: "border-yellow-500/30",
+    bgColor: "bg-yellow-500/5",
+    command: "python train.py",
+    technologies: [
+      "TensorFlow • PyTorch • OpenAI",
+      "Computer vision • NLP",
+      "Custom AI agents • Workflows",
+      "Data pipelines • MLOps",
+      "Neural networks • Deep learning",
     ],
-    gradient: "from-yellow-500/20 to-orange-500/20",
   },
   {
-    title: "Performance & Scale Engineering",
-    subtitle: "Built for millions of users",
-    highlightColor: "brand-blue",
+    title: "Cloud Architecture",
+    subtitle: "Scalable infrastructure",
     icon: Rocket,
-    items: [
-      {
-        name: "Microservices architecture design",
-        impact: "Infinite horizontal scaling",
-      },
-      {
-        name: "CDN & caching optimization",
-        impact: "Sub-second load times globally",
-      },
-      {
-        name: "Cloud services and infrastructure",
-        impact: "Handles billion+ records",
-      },
-      {
-        name: "Real-time data processing",
-        impact: "Live analytics & insights",
-      },
-      {
-        name: "Load balancing & failover",
-        impact: "Zero downtime deployments",
-      },
+    color: "text-cyan-400",
+    borderColor: "border-cyan-500/30",
+    bgColor: "bg-cyan-500/5",
+    command: "terraform apply",
+    technologies: [
+      "AWS • GCP • Azure • Multi-cloud",
+      "Docker • Kubernetes • Serverless",
+      "Infrastructure as Code • Terraform",
+      "CI/CD pipelines • GitOps",
+      "Monitoring • Observability • SRE",
     ],
-    gradient: "from-cyan-500/20 to-blue-500/20",
   },
 ];
 
 export function Tech() {
   const sectionRef = useRef<HTMLElement>(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
-  const [activeCategory, setActiveCategory] = useState(0);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 30, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 50,
-        damping: 20,
-      },
-    },
-  };
+  const isInView = useInView(sectionRef, { once: true, amount: 0.1, margin: "200px" });
 
   return (
     <section
@@ -177,169 +98,143 @@ export function Tech() {
           }}
           transition={{ duration: 10, repeat: Infinity }}
         />
-
-        {/* Floating Tech Icons */}
       </div>
 
       <div className="container mx-auto relative z-10">
         {/* Section Header */}
         <motion.div
-          className="text-center mb-20"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: -20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
           transition={{ duration: 0.8 }}
         >
-          {/* Section Badge */}
-          <motion.div
-            className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-6 py-3 mb-6"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={
-              isInView ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }
-            }
-            transition={{ delay: 0.2 }}
-          >
-            <Zap className="h-4 w-4 brand-orange" />
-            <span className="text-sm font-medium text-white/80 font-inter">
-              CUTTING-EDGE TECHNOLOGY STACK
+          <div className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-6 py-3 mb-6">
+            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+            <span className="text-sm font-medium text-white/80 font-armstrong">
+              TECHNOLOGY STACK
             </span>
-          </motion.div>
+          </div>
 
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-black font-urbanist mb-6">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-armstrong-extrabold mb-6">
             <span className="text-white">Our </span>
             <span className="brand-yellow">Tech</span>
-            <br />
           </h2>
 
-          <p className="text-xl text-white/70 max-w-3xl mx-auto font-inter leading-relaxed">
-            We <span className="brand-blue font-semibold">simplify</span> So you
-            do what you love. Keep building
+          <p className="text-xl text-white/70 max-w-3xl mx-auto font-armstrong-oblique leading-relaxed">
+            Modern technologies powering scalable solutions
           </p>
         </motion.div>
 
-        {/* Tech Categories Grid */}
-        <motion.div
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:px-10"
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-        >
-          {techCategories.map((category, index) => {
-            const Icon = category.icon;
+        {/* 4 Console Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-7xl mx-auto">
+          {techStacks.map((stack, index) => {
+            const Icon = stack.icon;
             return (
-              <motion.div
+              <div
                 key={index}
-                variants={itemVariants}
                 className="group relative"
-                onMouseEnter={() => setActiveCategory(index)}
               >
+                {/* Console Window */}
                 <div
-                  className={`
-                  relative p-8 rounded-2xl border border-white/10 bg-black/20 backdrop-blur-sm
-                  hover:bg-black/40 hover:border-white/20 transition-all duration-500
-                  ${
-                    activeCategory === index
-                      ? "ring-2 ring-white/20 bg-black/40"
-                      : ""
-                  }
-                `}
+                  className={`bg-black/90 border-2 ${stack.borderColor} rounded-lg shadow-2xl backdrop-blur-sm overflow-hidden`}
                 >
-                  {/* Background Gradient */}
+                  {/* Console Header Bar */}
                   <div
-                    className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${category.gradient} opacity-50 group-hover:opacity-70 transition-opacity duration-500`}
-                  />
-
-                  {/* Content */}
-                  <div className="relative z-10">
-                    {/* Header */}
-                    <div className="flex items-start justify-between mb-6">
-                      <div className="flex items-center gap-4">
-                        <div className="p-3 bg-white/10 rounded-xl backdrop-blur-sm group-hover:bg-white/20 transition-colors">
-                          <Icon
-                            className={`h-6 w-6 ${category.highlightColor}`}
-                          />
-                        </div>
-                        <div>
-                          <h3
-                            className={`text-2xl font-bold font-urbanist ${category.highlightColor} mb-1`}
-                          >
-                            {category.title.split(" ")[0]}{" "}
-                            <span className="text-white">
-                              {category.title.split(" ").slice(1).join(" ")}
-                            </span>
-                          </h3>
-                          <p className="text-white/60 font-inter text-sm">
-                            {category.subtitle}
-                          </p>
-                        </div>
+                    className={`flex items-center justify-between p-3 border-b ${stack.borderColor} ${stack.bgColor}`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <div className="flex gap-1.5">
+                        <div className="w-2.5 h-2.5 bg-red-500 rounded-full"></div>
+                        <div className="w-2.5 h-2.5 bg-yellow-500 rounded-full"></div>
+                        <div className="w-2.5 h-2.5 bg-green-500 rounded-full"></div>
                       </div>
-
-                      <motion.div
-                        className="p-2 rounded-lg bg-white/5 group-hover:bg-white/10 transition-colors"
-                        whileHover={{ rotate: 90 }}
-                        transition={{ duration: 0.2 }}
+                      <span
+                        className={`${stack.color} font-ubuntu text-xs ml-2`}
                       >
-                        <ChevronRight className="h-4 w-4 text-white/60" />
-                      </motion.div>
+                        {stack.command}
+                      </span>
+                    </div>
+                    <Icon className={`h-4 w-4 ${stack.color}`} />
+                  </div>
+
+                  {/* Console Content */}
+                  <div className="p-4">
+                    {/* Title with DecryptedText */}
+                    <div className="mb-4">
+                      <DecryptedText
+                        text={stack.title}
+                        className={`text-lg font-bold font-armstrong-extrabold ${stack.color}`}
+                        encryptedClassName="text-white/30 font-armstrong-extrabold"
+                        animateOn="view"
+                        speed={50}
+                        sequential={true}
+                        revealDirection="start"
+                      />
+                      <p className="text-white/60 font-armstrong text-sm mt-1">
+                        {stack.subtitle}
+                      </p>
                     </div>
 
-                    {/* Items List */}
-                    <div className="space-y-4">
-                      {category.items.map((item, itemIndex) => (
-                        <motion.div
-                          key={itemIndex}
-                          className="flex items-start gap-3 group/item hover:bg-white/5 p-3 rounded-lg transition-colors"
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={
-                            isInView
-                              ? { opacity: 1, x: 0 }
-                              : { opacity: 0, x: -20 }
-                          }
-                          transition={{ delay: 0.5 + itemIndex * 0.1 }}
+                    {/* Technologies List */}
+                    <div className="space-y-2">
+                      {stack.technologies.map((tech, techIndex) => (
+                        <div
+                          key={techIndex}
+                          className="flex items-start gap-2"
                         >
-                          <Star className="h-4 w-4 brand-orange mt-0.5 flex-shrink-0" />
-                          <div className="flex-1">
-                            <div className="text-white font-medium font-inter mb-1">
-                              {item.name}
-                            </div>
-                          </div>
-                        </motion.div>
+                          <span
+                            className={`${stack.color} font-ubuntu text-xs mt-1`}
+                          >
+                            {">"}
+                          </span>
+                          <span className="text-white/80 font-ubuntu text-sm">
+                            {tech}
+                          </span>
+                        </div>
                       ))}
                     </div>
 
-                    {/* CTA */}
+                    {/* Status Line */}
+                    <div className="mt-4 pt-3 border-t border-white/10">
+                      <div className="flex items-center gap-2">
+                        <div
+                          className={`w-2 h-2 bg-green-400 rounded-full animate-pulse`}
+                        ></div>
+                        <span className="text-green-400 font-ubuntu text-xs">
+                          READY
+                        </span>
+                        <span className="text-white/40 font-ubuntu text-xs ml-auto">
+                          v2.1.0
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             );
           })}
-        </motion.div>
+        </div>
 
         {/* Bottom CTA */}
-        <motion.div
-          className="text-center mt-20"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ delay: 1.2 }}
-        >
+        <div className="text-center mt-20">
           <div className="inline-flex items-center gap-6 p-8 bg-gradient-to-r from-black/40 to-black/20 backdrop-blur-sm border border-white/10 rounded-2xl">
             <div className="text-left">
-              <h3 className="text-2xl font-bold text-white font-urbanist mb-2">
+              <h3 className="text-2xl font-bold text-white font-armstrong-extrabold mb-2">
                 Ready to leverage this tech stack?
               </h3>
-              <p className="text-white/70 font-inter">
+              <p className="text-white/70 font-armstrong-oblique">
                 Get a free technical consultation and see how we can transform
                 your business.
               </p>
             </div>
-            <motion.button
-              className="px-8 py-4 bg-brand-orange hover:bg-brand-orange/90 text-black font-bold rounded-xl transition-colors font-urbanist whitespace-nowrap"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            <a
+              href="#contact"
+              className="px-8 py-4 bg-brand-orange hover:bg-brand-orange/90 text-black font-bold rounded-xl transition-all duration-300 font-armstrong whitespace-nowrap hover:scale-105 active:scale-95"
             >
               Get Started
-            </motion.button>
+            </a>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

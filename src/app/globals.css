@@ -1,7 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
+
+/* Armstrong Fonts */
+@font-face {
+  font-family: 'Armstrong Extrabold';
+  src: url('/Font/armstrong_3/Armstrong-Extrabold.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Armstrong Oblique';
+  src: url('/Font/armstrong_3/ArmstrongOblique.otf') format('opentype');
+  font-weight: normal;
+  font-style: oblique;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Armstrong';
+  src: url('/Font/armstrong_3/Armstrong.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
 
 @theme inline {
   --color-background: var(--background);
@@ -279,4 +305,21 @@
 
 .font-mono {
   font-family: var(--font-space-grotesk);
+}
+
+.font-armstrong-extrabold {
+  font-family: 'Armstrong Extrabold', 'Arial Black', sans-serif;
+}
+
+.font-armstrong-oblique {
+  font-family: 'Armstrong Oblique', 'Arial', sans-serif;
+}
+
+.font-armstrong {
+  font-family: 'Armstrong', 'Arial', sans-serif;
+  font-weight: 100;
+}
+
+.font-ubuntu {
+  font-family: 'Ubuntu', 'Consolas', monospace;
 }
