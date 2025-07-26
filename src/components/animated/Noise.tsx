@@ -58,6 +58,7 @@ const Noise: React.FC<NoiseProps> = ({
         drawGrain();
       }
       frame++;
+      // Reduce animation frequency for better performance
       animationId = window.requestAnimationFrame(loop);
     };
 

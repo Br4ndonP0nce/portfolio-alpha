@@ -26,28 +26,26 @@ export function Hero() {
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      {/* Circuit Board - Dark Pattern */}
+      {/* Circuit Board - Simplified for mobile */}
       <div
-        className="absolute inset-0 z-0 pointer-events-none"
+        className="absolute inset-0 z-0 pointer-events-none opacity-40 md:opacity-100"
         style={{
           backgroundImage: `
-            repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(34, 197, 94, 0.15) 19px, rgba(34, 197, 94, 0.15) 20px, transparent 20px, transparent 39px, rgba(34, 197, 94, 0.15) 39px, rgba(34, 197, 94, 0.15) 40px),
-            repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(34, 197, 94, 0.15) 19px, rgba(34, 197, 94, 0.15) 20px, transparent 20px, transparent 39px, rgba(34, 197, 94, 0.15) 39px, rgba(34, 197, 94, 0.15) 40px),
-            radial-gradient(circle at 20px 20px, rgba(16, 185, 129, 0.18) 2px, transparent 2px),
-            radial-gradient(circle at 40px 40px, rgba(16, 185, 129, 0.18) 2px, transparent 2px)
+            repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(193, 18, 31, 0.08) 19px, rgba(193, 18, 31, 0.08) 20px),
+            repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(253, 240, 213, 0.05) 19px, rgba(253, 240, 213, 0.05) 20px)
           `,
-          backgroundSize: "40px 40px, 40px 40px, 40px 40px, 40px 40px",
+          backgroundSize: "40px 40px, 40px 40px",
         }}
       />
 
-      {/* Noise Overlay */}
-      <div className="absolute inset-0 z-[2] pointer-events-none">
+      {/* Noise Overlay - Disabled on mobile for performance */}
+      <div className="absolute inset-0 z-[2] pointer-events-none hidden md:block">
         <Noise
           patternSize={250}
           patternScaleX={1}
           patternScaleY={1}
-          patternRefreshInterval={2}
-          patternAlpha={10}
+          patternRefreshInterval={4}
+          patternAlpha={5}
         />
       </div>
 
@@ -80,17 +78,17 @@ export function Hero() {
             {/* Main Headline - The Hook */}
             <div className="space-y-4">
               <motion.h1
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-armstrong-extrabold tracking-tighter leading-none"
+                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-armstrong-extrabold tracking-tighter leading-none"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
-                <span className="block text-white mb-2">WE</span>
+                <span className="block text-white mb-2 brand-yellow">WE</span>
 
                 {/* Rotating Text Component */}
                 <RotatingText
                   texts={["CONVERT", "FUTURIZE", "GROW", "ACTIVATE"]}
-                  mainClassName="px-2 sm:px-2 md:px-3 text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-armstrong-extrabold tracking-tighter leading-none brand-orange overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
+                  mainClassName="px-2 sm:px-2 md:px-3 text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-armstrong-extrabold tracking-tighter leading-none brand-orange overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
                   staggerFrom="last"
                   initial={{ y: "100%" }}
                   animate={{ y: 0 }}
@@ -101,7 +99,9 @@ export function Hero() {
                   rotationInterval={3000}
                 />
 
-                <span className="block text-white mt-2">BUSINESSES</span>
+                <span className="block text-white mt-2 brand-yellow">
+                  BUSINESSES
+                </span>
               </motion.h1>
 
               {/* Value Proposition - The Promise */}
@@ -117,50 +117,18 @@ export function Hero() {
                     outdated systems
                   </span>{" "}
                   to{" "}
-                  <span className="brand-blue font-semibold">
+                  <span className="brand-yellow font-semibold">
                     digital empires
                   </span>
                   .
                 </p>
                 <p className="text-base sm:text-lg md:text-xl text-white/60 max-w-3xl mx-auto font-armstrong-oblique">
                   We don't just build—we{" "}
-                  <span className="brand-yellow font-semibold">transform</span>{" "}
+                  <span className="brand-orange font-semibold">transform</span>{" "}
                   your entire business DNA.
                 </p>
               </motion.div>
             </div>
-
-            {/* Social Proof / Benefits */}
-            <motion.div
-              className="flex flex-wrap justify-center gap-4 pt-8"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.4 }}
-            >
-              {[
-                { text: "10X Revenue Growth", icon: "📈" },
-                { text: "Future-Proof Tech", icon: "🚀" },
-                { text: "Competitive Edge", icon: "⚡" },
-              ].map((benefit, index) => (
-                <motion.div
-                  key={index}
-                  className="flex items-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-4 py-2 hover:bg-white/10 transition-all duration-300"
-                  whileHover={{
-                    scale: 1.05,
-                    backgroundColor: "rgba(255,255,255,0.1)",
-                    borderColor: "rgba(255,255,255,0.2)",
-                  }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.5 + index * 0.1 }}
-                >
-                  <span className="text-lg">{benefit.icon}</span>
-                  <span className="text-white/80 text-sm font-medium font-inter">
-                    {benefit.text}
-                  </span>
-                </motion.div>
-              ))}
-            </motion.div>
 
             {/* Call-to-Action Section - The Close */}
             <motion.div
@@ -177,7 +145,7 @@ export function Hero() {
                 >
                   <Link
                     href="#contact"
-                    className="group inline-flex items-center gap-3 bg-brand-orange hover:bg-brand-orange/90 text-black font-bold text-lg px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl font-urbanist"
+                    className="group inline-flex items-center gap-3 bg-brand-orange hover:bg-brand-orange/90 text-white font-bold text-sm md:text-lg px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl font-urbanist"
                   >
                     START YOUR TRANSFORMATION
                     <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -191,7 +159,7 @@ export function Hero() {
                 >
                   <Link
                     href="#projects"
-                    className="inline-flex items-center gap-3 bg-transparent border-2 border-white/30 hover:border-white/50 hover:bg-white/5 text-white font-semibold text-lg px-8 py-4 rounded-full transition-all duration-300 font-urbanist"
+                    className="inline-flex items-center gap-3 bg-transparent border-2 border-brand-yellow/50 hover:border-brand-yellow hover:bg-brand-yellow/10 text-brand-yellow font-semibold text-sm md:text-lg px-8 py-4 rounded-full transition-all duration-300 font-urbanist"
                   >
                     SEE THE RESULTS
                   </Link>
@@ -215,25 +183,12 @@ export function Hero() {
 
       {/* Scroll Indicator */}
 
-      {/* Background Moving Text */}
-      <motion.div
-        className="absolute bottom-0 right-0 z-0 overflow-hidden pointer-events-none select-none"
-        style={{
-          opacity: useTransform(scrollYProgress, [0, 0.3], [0.05, 0]),
-        }}
-      >
-        <motion.h2
-          className="text-[12rem] md:text-[16rem] lg:text-[20rem] font-black text-white/5 leading-none font-urbanist"
-          animate={{ x: [0, -100, 0] }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        >
+      {/* Background Moving Text - Disabled on mobile for performance */}
+      <div className="absolute bottom-0 right-0 z-0 overflow-hidden pointer-events-none select-none hidden lg:block opacity-5">
+        <h2 className="text-[20rem] font-black text-white/5 leading-none font-urbanist">
           TRANSFORM
-        </motion.h2>
-      </motion.div>
+        </h2>
+      </div>
     </motion.div>
   );
 }

@@ -107,9 +107,9 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-    --brand-orange: #FF6B00;
-      --brand-blue: #5542FF;
-      --brand-yellow: #FFD500;
+    --brand-orange: #c1121f;
+      --brand-blue: #c1121f;
+      --brand-yellow: #fdf0d5;
 }
 
 .dark {
